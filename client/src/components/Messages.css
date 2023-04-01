@@ -1,0 +1,25 @@
+.messages {
+    list-style: none;
+    margin: 0;
+    padding: 2rem 1rem;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: var(--border-color);
+    height: 85%;
+    overflow-y: scroll;
+}
+
+.message {
+    display: block;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.message.chat {
+    border-bottom: 1px solid var(--loader-color);
+}
+.message.error {
+    color: var(--error-color);
+    border-bottom: 1px solid var(--error-color);
+}

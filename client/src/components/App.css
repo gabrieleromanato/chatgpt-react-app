@@ -1,0 +1,9 @@
+.app {
+    max-width: var(--app-width);
+    margin: 0 auto;
+    height: 100%;
+}
+
+.chat-wrap {
+    height: 100%;
+}
