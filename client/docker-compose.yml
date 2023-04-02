@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  chatgpt_react_flask_app_client:
+    container_name: chatgpt_react_flask_app_client
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src/app
