@@ -2,6 +2,9 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def create_app(test_config=None):
@@ -11,10 +14,10 @@ def create_app(test_config=None):
     CORS(app)
 
     app.config.from_mapping(
-        API_KEY='',
-        JWT_SECRET_KEY='',
-        USERNAME='',
-        PASSWORD=''
+        API_KEY=os.getenv('API_KEY'),
+        JWT_SECRET_KEY=os.getenv('JWT_SECRET_KEY'),
+        USERNAME=os.getenv('USERNAME'),
+        PASSWORD=os.getenv('PASSWORD')
     )
 
     jwt = JWTManager(app)
