@@ -9,6 +9,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
 from flaskr.utils import send_request_to_api, get_choices_text_from_api
+from flaskr.cache import redis_connection
 
 bp = Blueprint('api', __name__, url_prefix='/v1')
 
@@ -31,8 +32,13 @@ def question():
     text = request.json.get('question', '')
     if not text:
         return jsonify({'error': 'Invalid request.'})
+    cached_question = redis_connection.get(text)
+    if cached_question:
+        return jsonify({'response': cached_question })
     req = send_request_to_api(current_app.config['API_KEY'], text)
     if not req:
         return jsonify({'error': 'Request failed or timed out.'})
     choices_text = get_choices_text_from_api(req.get('choices', []))
-    return jsonify({'response': '\n'.join(choices_text)})
+    answer = '\n'.join(choices_text)
+    redis_connection.set(text, answer)
+    return jsonify({'response': answer})

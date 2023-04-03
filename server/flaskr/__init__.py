@@ -17,7 +17,9 @@ def create_app(test_config=None):
         API_KEY=os.getenv('API_KEY'),
         JWT_SECRET_KEY=os.getenv('JWT_SECRET_KEY'),
         USERNAME=os.getenv('USERNAME'),
-        PASSWORD=os.getenv('PASSWORD')
+        PASSWORD=os.getenv('PASSWORD'),
+        REDIS_PORT=os.getenv('REDIS_PORT'),
+        REDIS_HOST=os.getenv('REDIS_HOST')
     )
 
     jwt = JWTManager(app)
