@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  chatgpt_react_node_app:
+    container_name: chatgpt_react_node_app
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/usr/src/app
+  chatgpt_react_node_redis:
+    container_name: chatgpt_react_node_redis 
+    image: redis 
+    ports:
+      - "6381:6379"
