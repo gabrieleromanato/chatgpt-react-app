@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redis;
 
 class APIController extends Controller
 {
     public static function getResponse(string $text) : array {
+        $answer = ['response' => ''];
+        $cached_answer = Redis::get($text);
+        if($cached_answer) {
+            $answer['response'] = $cached_answer;
+            return $answer;
+        }
         $url = 'https://api.openai.com/v1/chat/completions';
         $token = env('OPEN_AI_API_KEY');
         $data = [
@@ -17,7 +24,7 @@ class APIController extends Controller
             return ['error' => 'Request failed or timed out.'];
         }
         $body = $response->json();
-        $answer = ['response' => ''];
+
         if(isset($body['choices']) && is_array($body['choices'])) {
             foreach ($body['choices'] as $choice) {
                 if(isset($choice['message']) && isset($choice['message']['content'])) {
@@ -25,6 +32,7 @@ class APIController extends Controller
                 }
             }
         }
+        Redis::set($text, $answer['response']);
         return $answer;
 
     }
