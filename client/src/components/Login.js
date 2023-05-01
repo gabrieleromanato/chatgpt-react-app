@@ -8,6 +8,7 @@ export default function Login({ setLoggedIn }) {
     const passwordRef = useRef('');
 
     useEffect(() => {
+        document.title = 'Login | ChatGPT App';
         setError('');
     }, []);
 
