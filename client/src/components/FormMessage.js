@@ -7,6 +7,7 @@ export default function FormMessage({ addUserMessage }) {
     const handleSubmitByKey = evt => {
         const code = evt.code;
         if(code === 'Enter') {
+            evt.preventDefault();
             return addUserMessage(null, msgRef.current.value);
         }
     };
