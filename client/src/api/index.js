@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const APIURL = 'http://localhost:8080/v1/';
+const APIURL = 'https://chat.justatestapi.it/v1/';
 
 export async function doLogin(data) {
     try {

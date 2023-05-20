@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+import '../styles/App.css';
 import Login from './Login';
 import FormMessage from './FormMessage';
 import Messages from './Messages';
 import Refresh from './Refresh';
-import Loader from './Loader';
 import { sendQuestion } from '../api';
 
 export default function App() {
@@ -30,8 +29,10 @@ export default function App() {
 
 
 
-  const addUserMessage = (evt, text) => {
-     evt.preventDefault(); 
+  const addUserMessage = (evt = null, text = '') => {
+     if(evt) {
+         evt.preventDefault();
+     } 
      setMessages(previous => {
         return [...previous, { text, type: 'user' }];
      });
@@ -46,6 +47,7 @@ export default function App() {
 
 
   useEffect(() => {
+     document.title = 'ChatGPT App'; 
      setLoggedIn(localStorage.getItem('token') !== null);
      setIsLoading(false);
      setMessages([]);
@@ -57,10 +59,9 @@ export default function App() {
         {!loggedIn && <Login setLoggedIn={setLoggedIn} /> } 
         {loggedIn && 
         <div className="chat-wrap">
-          <Messages messages={messages} />
+          <Messages messages={messages} isLoading={isLoading} />
           <FormMessage addUserMessage={addUserMessage} />
           <Refresh refreshChat={refreshChat} />
-          {isLoading && <Loader />}
         </div>  } 
     </main>
   );

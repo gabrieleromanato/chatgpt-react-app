@@ -1,23 +1,19 @@
 .messages {
     list-style: none;
     margin: 0;
-    padding: 2rem 1rem;
-    border-width: 0 1px 1px 1px;
-    border-style: solid;
-    border-color: var(--border-color);
+    padding: 0;
     height: 85%;
     overflow-y: scroll;
 }
 
 .message {
     display: block;
-    margin-bottom: 1.5rem;
     padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
 }
 
 .message.chat {
-    border-bottom: 1px solid var(--loader-color);
+    background: rgb(247,247,248);
+    border-bottom: 1px solid #d9d9e3;
 }
 .message.error {
     color: var(--error-color);

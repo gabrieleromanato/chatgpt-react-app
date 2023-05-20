@@ -23,3 +23,11 @@ html, body, #root {
     outline-style: none;
     box-shadow: none;
 }
+
+button:not([class]) {
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+}
