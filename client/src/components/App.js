@@ -45,9 +45,11 @@ export default function App() {
       window.location = window.location.href;
   };
 
+    document.title = 'ChatGPT App';
 
-  useEffect(() => {
-     document.title = 'ChatGPT App'; 
+
+    useEffect(() => {
+
      setLoggedIn(localStorage.getItem('token') !== null);
      setIsLoading(false);
      setMessages([]);
