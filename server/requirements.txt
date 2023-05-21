@@ -4,3 +4,4 @@ flask-jwt-extended
 requests
 python-dotenv
 redis
+waitress

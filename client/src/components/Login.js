@@ -1,5 +1,5 @@
 import '../styles/Login.css';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { doLogin  } from '../api';
 
 export default function Login({ setLoggedIn }) {
@@ -7,10 +7,7 @@ export default function Login({ setLoggedIn }) {
     const usernameRef = useRef('');
     const passwordRef = useRef('');
 
-    useEffect(() => {
-        document.title = 'Login | ChatGPT App';
-        setError('');
-    }, []);
+    document.title = 'Login | ChatGPT App';
 
     const handleLogin = () => {
         setError('');
